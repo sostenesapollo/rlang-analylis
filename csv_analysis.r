@@ -25,17 +25,55 @@ tempo <- as.integer(dates$encerramento - dates$notificacao)
 median   <- median(tempo)
 mean     <- mean(tempo)
 freq_abs <- table(tempo)
-sumary   <- summary(dates)
 
 # Dados relacionados ao tempo
 print(median)
 print(mean)
-print(sumary)
-print('Resumo de dados mais importantes relacionados ao ')
+print('Resumo de dados mais importantes relacionados à diferença da data de notificação e a de encerramento')
+print(summary(dates))
 
 # Plotando gráfico de barras da com a frequencia absoluta da 
 # diferença de dias entre a data de notificação e a data de encerramento
-graf_barra3 = barplot(t(prop.table(freq_abs)), beside = TRUE, legend = TRUE, bty = 'n', ylim = c(0, 0.06), xlab = 'Tempo (dias)', ylab = 'Frequência absoluta')
+
+# graf_barra3 = barplot(t(prop.table(freq_abs)), beside = TRUE, legend = TRUE, bty = 'n', ylim = c(0, 0.06), xlab = 'Tempo (dias)', ylab = 'Frequência absoluta')
 
 
+###### Quantificando dados 
+estados             <- data$SG_UF_NOT
+sexo                <- data$CS_SEXO
+idade               <- data$NU_IDADE_N
+municipio           <- data$ID_MUNICIP
+unidade             <- data$CO_UNI_NOT
+data_nascimento     <- data$DT_NASC
 
+op <- par(mfrow = c(3, 2), pty = "s")
+
+# 1. Estado
+print('Resumo de dados mais importantes relacionados ao estado')
+print('Resumo de dados mais importantes relacionados à diferença da data de notificação e a de encerramento')
+print(summary(dates))
+
+pir = pie(slice_head(estados), density=200, main = 'Quantidade de casos por estado', col = rainbow(length(table(estados))))
+
+# 2. Sexo
+print('Resumo de dados mais importantes relacionados ao sexo dos pacientes')
+pir = pie(table(sexo), main = 'Quantidade de casos por sexo')
+
+# 3. Municipio
+# print('Resumo de dados mais importantes relacionados ao municipio')
+# pir = pie(head(municipio), main = 'Quantidade de casos por municipio')
+
+
+# 4. Unidade
+print('Resumo de dados mais importantes relacionados a unidade de notificação')
+pir = pie(table(unidade)[100], main = 'Quantidade de casos por unidade de notificação')
+
+# 5. Idade
+print('Resumo de dados mais importantes relacionados a idade')
+print(table(idade))
+
+graf_barra3 = barplot(  (idade), beside = TRUE, bty = 'n', xlab = 'Idade', ylab = 'Frequência absoluta')
+
+par(op)
+
+View(idade)
