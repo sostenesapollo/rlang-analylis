@@ -18,12 +18,17 @@ print(nrow(maranhao))
 print('piaui_e_maranhao:')
 print(nrow(piaui_e_maranhao))
 print(summary(piaui_e_maranhao))
-table(piaui_e_maranhao)
 
-pir = pie(table(piaui_e_maranhao$SG_UF_NOT), density=40,  cex=0.5,  main = 'Quantidade de casos notificados por estado', col = rainbow(length(table(estados))))
+# Gerando um dataframe com o sexo e o estado
+d <- data.frame(
+    sexo=piaui_e_maranhao$CS_SEXO,
+    estado=piaui_e_maranhao$SG_UF_NOT
+)
 
-# tempo_notificacao_ate_raio_x <- as.integer(dates$encerramento - dates$notificacao)
+# Define o formato do painel que serão plotados os gráficos
+par(mfrow = c(2, 1))
 
-# print(summary(tempo_notificacao_ate_raio_x))
-
-# pir = pie(table(tempo_notificacao_ate_raio_x), density=40,  cex=0.5,  main = 'Quantidade de casos notificados por estado', col = rainbow(length(table(estados))))
+# Gráfico de pizza comparando os casos totais do PI e MA
+pie(table(piaui_e_maranhao$SG_UF_NOT), density=40,  cex=0.5,  main = 'Quantidade de casos notificados por estados (PI | MA)', col = rainbow(2))
+# Gráfico de barras comparando os casos por sexo nos estados do PI e MA
+barplot(table(d$sexo), ylab = 'Quantidade de pacientes',  main = 'Pacientes por Sexo nos estados PI e MA', col=c("#feb8c7", "green", "#8a9a5b"))
