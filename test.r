@@ -1,8 +1,6 @@
-# id = c(1,1,2,2,3)
-# nome = c("a","b","c","d","e")
-# salario = c(8000,2000,3000, 6000,5000)
+# install.packages("skimr")
+library("skimr")
+values = read.csv('INFLUD19-16042020.csv', header=TRUE, sep=';')
 
-# df = data.frame(id,nome,salario)
-# # View(df[1:2,])
-
-# barplot(table(cut(df$id, seq(1,3))))
+ten_first <- values[1:10,]
+print(skim(values))
