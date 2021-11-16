@@ -2,6 +2,9 @@ library(dplyr)
 
 data = read.csv('INFLUD19-16042020.csv', header=TRUE, sep=';')
 
+# Seta shape da view
+par(mfrow = c(1, 1))
+
 # Remove todos os dados que não tem uma data de encerramento
 # Pois não temos dados de encerramento, e na subtraçao de datas dá problema
 data <- data[data$DT_ENCERRAMENTO != '',]
@@ -28,8 +31,16 @@ print("Mediana:")
 print(median)
 print("Média:")
 print(mean)
+print("Variância:")
+print(var(tempo))
+print("Desvio padrão:")
+print(sd(tempo))
 print('Resumo de dados mais importantes relacionados à diferença da data de notificação e a de encerramento')
 print(summary(dates))
+
+# O período encontrado é de
+# 05/01/2019 - 15/04/2020
+# pode ser encontrado no sumário, após a transformação da data no tipo Date
 
 # Plotando gráfico de barras da com a frequencia absoluta da 
 # diferença de dias entre a data de notificação e a data de encerramento
