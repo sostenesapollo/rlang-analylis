@@ -5,6 +5,9 @@ data = read.csv('INFLUD19-16042020.csv', header=TRUE, sep=';')
 # Seta shape da view
 par(mfrow = c(1, 1))
 
+# Filtra de dois estados
+data <- filter(data, SG_UF == 'PI' | SG_UF == 'MA')
+
 # Remove todos os dados que não tem uma data de encerramento
 # Pois não temos dados de encerramento, e na subtraçao de datas dá problema
 data <- data[data$DT_ENCERRAMENTO != '',]

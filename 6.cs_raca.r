@@ -1,7 +1,7 @@
 library(dplyr)
 
 data = read.csv('INFLUD19-16042020.csv', header=TRUE, sep=';')
-df <- filter(data, SG_UF_NOT == 'MA')
+df <- filter(data, SG_UF == 'MA')
 tb <- table(df$CS_RACA);
 
 # unidades_com_mais_casos <- tail(tb, 7)

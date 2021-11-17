@@ -3,7 +3,7 @@ library(dplyr)
 par(mfrow = c(1, 1))
 
 data = read.csv('INFLUD19-16042020.csv', header=TRUE, sep=';')
-df <- filter(data, SG_UF_NOT == 'MA')
+df <- filter(data, SG_UF == 'MA')
 tb <- table(df$ID_UNIDADE)
 
 #sort tb by value
